@@ -1,10 +1,10 @@
 package J06001;
 public class Invoices{
     private String invoice_code, invoice_name;
-    private int amount, discount, pay;
+    private long amount, discount, pay;
     public Invoices(){
     }
-    public void setDefaultInvoice(String invoice_code, int amount){
+    public void setDefaultInvoice(String invoice_code, long amount){
         this .invoice_code = invoice_code;
         this.amount = amount;
     }
@@ -14,16 +14,17 @@ public class Invoices{
     public void setInvoiceName(String invoiceName){
         this.invoice_name = invoiceName;
     }
-    public void solvePrice(int price){
+    public void solvePrice(long price){
         this.pay = this.amount * price;
+        this.discount = this.pay;
         if(this.amount >= 150){
-            this.discount = (int) (this.pay * 0.5);
+            this.discount *= 0.5;
         }
         else if(this.amount >= 100){
-            this.discount = (int) (this.pay * 0.3);
+            this.discount *= 0.3;
         }
         else{
-            this.discount = (int) (this.pay * 0.15);
+            this.discount *= 0.15;
         }
         this.pay -= this.discount;
     }
