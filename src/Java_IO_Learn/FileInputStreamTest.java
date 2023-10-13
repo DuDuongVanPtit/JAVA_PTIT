@@ -1,4 +1,4 @@
-package Java_IO;
+package Java_IO_Learn;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,3 +23,6 @@ public class FileInputStreamTest {
         }
     }
 }
+//cd: change directory
+//ll: list
+//touch + file_name: create a file
