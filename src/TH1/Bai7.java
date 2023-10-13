@@ -6,8 +6,6 @@ public class Bai7 {
     public static void main(String[] args) throws Exception{
         Scanner sc = new Scanner(System.in);
         //Scanner sc = new Scanner(new File("DATA.in"));
-        BigInteger bg = new BigInteger("0");
-        
         while(sc.hasNextLine()){
             
         }
