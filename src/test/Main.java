@@ -1,26 +1,56 @@
-package test;
-
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 import java.util.*;
 
-public class Main {
-    public static void main(String[] args) {
-        TreeSet <Integer> tset = new TreeSet<>();
-        TreeSet <Integer> tset1 = new TreeSet<>();
-        tset.add(2);
-        tset.add(5);
-        tset.add(4);
-        tset.add(5);
-        tset.add(23);
-        tset.add(24);
-        tset.add(26);
-        tset1.add(23);
-        tset1.add(24);
-        tset1.add(4);
-        tset1.add(6);
-        tset1.add(7);
-        TreeSet <Integer> tset2 = new TreeSet<>();
-        tset2.addAll(tset);
-        tset2.addAll(tset1);
-        System.out.println(tset2);
+class LoaiPhong implements Comparable<LoaiPhong> {
+    private String s;
+    private String loaiPhong;
+
+    public LoaiPhong(String s) {
+        this.s = s;
+        this.loaiPhong = getS();
+    }
+
+    public String getS() {
+        loaiPhong = s.split("\\s+")[1];
+        return loaiPhong;
+    }
+    public int compareTo(LoaiPhong a) {
+        return loaiPhong.compareTo(a.loaiPhong);
+    }
+    public String toString() {
+        return s;
     }
 }
+
+public class J07045 {
+    public static void main(String[] args) throws IOException {
+        ArrayList<LoaiPhong> ds = new ArrayList<>();
+        Scanner in = new Scanner(new File("PHONG.in"));
+        int n = Integer.parseInt(in.nextLine());
+        while(n-->0){
+            ds.add(new LoaiPhong(in.nextLine()));
+        }
+        Collections.sort(ds);
+        for(LoaiPhong tmp : ds){
+            System.out.println(tmp);
+        }
+    }
+    public static void main2473501(String[] args) throws IOException {
+        ArrayList<LoaiPhong> ds = new ArrayList<>();
+        Scanner in = new Scanner(new File("PHONG.in"));
+        int n = Integer.parseInt(in.nextLine());
+        while (n-- > 0) {
+            ds.add(new LoaiPhong(in.nextLine()));
+        }
+        Collections.sort(ds);
+        for (LoaiPhong tmp : ds) {
+            System.out.println(tmp);
+        }
+        in.close();
+    }
+}
+
