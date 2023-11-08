@@ -1,26 +1,49 @@
-package test;
-
+import java.io.*;
+import java.text.*;
 import java.util.*;
 
-public class Main {
-    public static void main(String[] args) {
-        TreeSet <Integer> tset = new TreeSet<>();
-        TreeSet <Integer> tset1 = new TreeSet<>();
-        tset.add(2);
-        tset.add(5);
-        tset.add(4);
-        tset.add(5);
-        tset.add(23);
-        tset.add(24);
-        tset.add(26);
-        tset1.add(23);
-        tset1.add(24);
-        tset1.add(4);
-        tset1.add(6);
-        tset1.add(7);
-        TreeSet <Integer> tset2 = new TreeSet<>();
-        tset2.addAll(tset);
-        tset2.addAll(tset1);
-        System.out.println(tset2);
+class LuuTru{
+    public static int i = 1;
+    private String mkh, name, ma;
+    private Date den, di;
+    public LuuTru(String name, String ma, String den, String di) throws ParseException {
+        this.mkh = "KH" + String.format("%02d", i++);
+        this.name = name;
+        this.ma = ma;
+        this.den = new SimpleDateFormat("dd/MM/yyyy").parse(den);
+        this.di = new SimpleDateFormat("dd/MM/yyyy").parse(di);
+    }
+    public long getLuuTru() { 
+        long k =(di.getTime() - den.getTime());
+        long x = k /  (60 * 60 * 24 * 1000);
+        return x;
+    }
+    public String toString() {
+        return mkh + " " + name + " " + ma + " " + getLuuTru();
+    }
+}
+public class J07046 {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(new File("KHACH.in"));
+        int t = sc.nextInt();
+        sc.nextLine();
+        List<LuuTru> list = new ArrayList<LuuTru>();
+        while(t-- > 0){
+            String name = sc.nextLine();
+            String ma = sc.nextLine();
+            String den = sc.nextLine();
+            String di = sc.nextLine();
+            LuuTru x = new LuuTru(name, ma, den, di);
+            list.add(x);
+        }
+        Collections.sort(list, new Comparator<LuuTru>() {
+            public int compare(LuuTru a, LuuTru b){
+                return Long.compare(b.getLuuTru(), a.getLuuTru());
+            }
+        });
+        for(LuuTru x : list){
+            System.out.println(x);
+        }
+        sc.close();
     }
 }
