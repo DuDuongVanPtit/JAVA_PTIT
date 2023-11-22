@@ -4,12 +4,21 @@ public class J08012 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
-        Map <Integer, Integer> mp = new HashMap<>();
-        while(t-- > 0){
-            mp.put(sc.nextInt(), sc.nextInt());
+        int n = t;
+        int[] ans = new int[t + 1];
+        while(t-- > 1){
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            ans[x]++;
+            ans[y]++;
         }
-        if(mp.size() == 1) System.out.println("Yes");
-        else System.out.println("No");
+        for(int i = 1; i <= n; i++){
+            if(ans[i] != 1 && ans[i] != n -1){
+                System.out.println("No");
+                return;
+            }
+        }
+        System.out.println("Yes");
     }
 }
 //5
